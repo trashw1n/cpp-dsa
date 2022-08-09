@@ -1,46 +1,48 @@
 #include<iostream>
+#include<vector>
 
 using namespace std;
 
-void display(int arr[],int size){
-    for(int m=0;m<size;m++){
-        cout<<"arr["<<m<<"]= "<<arr[m]<<endl;
+void display(vector<int> &vec){
+    for(int x : vec){
+        cout<<x<<" ";
     }
+    cout<<endl;
 }
 
-void recursiveInsertionSort(int arr[],int n){
+void recursiveInsertionSort(vector<int> &vec,int n){
     if(n<=1) return;
-    recursiveInsertionSort(arr,n-1);
-    int last=arr[n-1];
+    recursiveInsertionSort(vec,n-1);
+    int last=vec[n-1];
     int index=n-2;
-    while(index>=0 && arr[index]>last){
-        arr[index+1]=arr[index];
+    while(index>=0 && vec[index]>last){
+        vec[index+1]=vec[index];
         index--;    
     }
-    arr[index+1]=last;
+    vec[index+1]=last;
 }
 
-void insertionSort(int arr[],int size){
+void insertionSort(vector<int> &vec){
     int current;
+    int size=vec.size();
     for(int m=1;m<size;m++){
-        current=arr[m];
+        current=vec[m];
         int j=m-1;
-        while(j>=00 && arr[j]>current){
-            arr[j+1]=arr[j];
+        while(j>=00 && vec[j]>current){
+            vec[j+1]=vec[j];
             j--;
         }
-        arr[j+1]=current;
+        vec[j+1]=current;
     }
 }
 
 int main(){
-    int arr1[50] = {5,4,3,2,1,6,9,10,11,7};
-    int arr2[50] = {6,8,1,3,10,45};
-    int size1=10; //size can be computed via helper functions, focus is on the sort algorithm
-    int size2=6;
-    //insertionSort(arr1, size1);
-    //display(arr1,size1);
-    recursiveInsertionSort(arr2,size2);
-    display(arr2,size2);
+    vector<int> vec1{5,4,3,2,1,6,9,10,11,7};
+    vector<int> vec2{6,8,1,3,10,45};
+    //insertionSort(vec1);
+    //display(vec1);
+    display(vec2);
+    recursiveInsertionSort(vec2,vec2.size());
+    display(vec2);
     return 0;
 }
